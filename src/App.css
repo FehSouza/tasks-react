@@ -15,7 +15,7 @@
   font-family: 'Signika', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  color: var(--color-secondary);
+  color: var(--color-letter-primary);
   margin-top: 28px;
 }
 
@@ -26,4 +26,22 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+}
+
+.inputTask {
+  width: 100%;
+  background-color: transparent;
+  border-radius: 34px;
+  border: none;
+  outline: none;
+  padding-left: 16px;
+  box-sizing: border-box;
+  font-family: 'Signika', sans-serif;
+  font-size: 16px;
+  color: var(--color-letter-secondary);
+  border-color: white;
+}
+
+.inputTask:hover {
+  cursor: text;
 }

@@ -1,8 +1,14 @@
 :root {
   --color-primary: #236fe2;
-  --color-primary-A: #236fe2bf;
   --color-secondary: #ffffff;
   --color-background-primary: #202226;
   --color-background-secondary: #2a2c31;
+  --color-letter-primary: #ffffff;
   --color-letter-secondary: #9a9b9e;
+  --color-card: #373a44;
+
+  --color-primary-A: #236fe2bf;
+  --color-secondary-A: #ffffffbf;
+  --color-background-primary-A: #20222680;
+  --color-background-secondary-A: #2a2c3180;
 }
