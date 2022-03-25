@@ -11,9 +11,8 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
   const handleAddTask = (task) => {
-    const value = task.trim();
-
-    if (value.length) setTasks([...tasks, { id: Math.random(), task, completed: false }]);
+    const text = task.trim();
+    if (text.length) setTasks([...tasks, { task, id: Math.random(), completed: false }]);
     return;
   };
 
@@ -22,6 +21,19 @@ function App() {
   const handleFocusAddTask = () => {
     const input = ref.current;
     input.focus();
+  };
+
+  const handleDelete = (id) => {
+    const filteredTasks = tasks.filter((task) => id !== task.id);
+    setTasks(filteredTasks);
+  };
+
+  const handleToggle = (id) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id === id) return { ...task, completed: !task.completed };
+      return task;
+    });
+    setTasks(newTasks);
   };
 
   return (
@@ -36,7 +48,16 @@ function App() {
         </div>
       )}
       {tasks.map(({ task, id, completed }) => {
-        return <CardTask key={id} task={task} completed={completed} />;
+        return (
+          <CardTask
+            onDelete={handleDelete}
+            task={task}
+            key={id}
+            id={id}
+            completed={completed}
+            onToggle={handleToggle}
+          />
+        );
       })}
     </div>
   );

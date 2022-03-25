@@ -3,20 +3,37 @@
   min-height: 50px;
   background-color: var(--color-card);
   border-radius: 8px;
+  border: 1px solid var(--color-card);
   margin-top: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.containerCardTask:focus-within {
+  /* coloca o focus nos children */
+  border: 1px solid var(--color-primary);
+}
+
 .buttonDelete {
   margin-left: 12px;
+  height: 30px;
+  color: var(--color-delete);
+  padding: 4px;
+  /* box-sizing: border-box; */
+  border: 1px solid var(--color-card);
 }
 
 .buttonDelete:hover {
   cursor: pointer;
-  filter: brightness(1.2);
+  color: var(--color-delete-A);
   transition-duration: 250ms;
+}
+
+.buttonDelete:focus {
+  height: 24px;
+  color: var(--color-delete-A);
+  padding: 4px;
 }
 
 .textTask {
@@ -35,10 +52,17 @@
   border-radius: 6px;
   background-color: var(--color-card);
   margin-right: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .checkTask:hover {
   cursor: pointer;
   border: 1px solid var(--color-background-primary-A);
   transition-duration: 250ms;
+}
+
+.checkIcon {
+  color: #27e69a;
 }
