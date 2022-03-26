@@ -4,8 +4,9 @@ import { Logo } from './components/Logo';
 import { AddTask } from './components/AddTask';
 import { WithoutTasks } from './components/WithoutTasks';
 import { ButtonAddTask } from './components/ButtonAddTask';
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { CardTask } from './components/CardTask';
+import { StatusCompleted } from './components/StatusCompleted';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -36,10 +37,17 @@ function App() {
     setTasks(newTasks);
   };
 
+  const totalTasks = useMemo(() => tasks.length, [tasks]);
+  const totalTasksCompleted = useMemo(() => tasks.filter((task) => task.completed).length, [tasks]);
+  const completePercentage = useMemo(() => (totalTasksCompleted * 100) / totalTasks, [totalTasks, totalTasksCompleted]);
+
   return (
-    <div className="App">
+    <main className="App">
       <Logo />
       <AddTask ref={ref} onAdd={handleAddTask} />
+      {!!tasks.length && (
+        <StatusCompleted value={completePercentage} quantity={`${totalTasksCompleted}/${totalTasks}`} />
+      )}
       <span className="titleTasks">Todas as Tarefas</span>
       {!tasks.length && (
         <div className="content">
@@ -59,7 +67,7 @@ function App() {
           />
         );
       })}
-    </div>
+    </main>
   );
 }
 
