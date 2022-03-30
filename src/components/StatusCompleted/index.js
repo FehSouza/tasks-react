@@ -1,15 +1,15 @@
-import styles from './styles.module.css';
+import * as S from './styles';
 
 export const StatusCompleted = ({ value, quantity }) => {
   return (
-    <section className={styles.containerStatusCompleted}>
-      <div className={styles.wrapperStatus}>
-        <span className={styles.titleStatus}>Concluídas</span>
-        <span className={styles.status}>{quantity}</span>
-      </div>
-      <div className={styles.statusEx}>
-        <div className={styles.statusIn} style={{ width: `calc(${value}% - 2px)` }}></div>
-      </div>
-    </section>
+    <S.Container>
+      <S.WrapperStatus>
+        <S.TitleStatus>Concluídas</S.TitleStatus>
+        <S.Status>{quantity}</S.Status>
+      </S.WrapperStatus>
+      <S.StatusEx>
+        <S.StatusIn width={value}></S.StatusIn>
+      </S.StatusEx>
+    </S.Container>
   );
 };

@@ -1,12 +1,9 @@
-import './App.css';
-import './styles/theme.css';
-import { Logo } from './components/Logo';
-import { AddTask } from './components/AddTask';
-import { WithoutTasks } from './components/WithoutTasks';
-import { ButtonAddTask } from './components/ButtonAddTask';
+import * as S from './AppStyles';
+import { ThemeProvider } from 'styled-components';
+import { Logo, AddTask, WithoutTasks, ButtonAddTask, CardTask, StatusCompleted } from './components/index.js';
 import { useMemo, useRef, useState } from 'react';
-import { CardTask } from './components/CardTask';
-import { StatusCompleted } from './components/StatusCompleted';
+import { theme } from './styles/theme';
+import { GlobalStyle } from './styles/globalStyle';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -18,7 +15,6 @@ function App() {
   };
 
   const ref = useRef();
-
   const handleFocusAddTask = () => {
     const input = ref.current;
     input.focus();
@@ -42,32 +38,35 @@ function App() {
   const completePercentage = useMemo(() => (totalTasksCompleted * 100) / totalTasks, [totalTasks, totalTasksCompleted]);
 
   return (
-    <main className="App">
-      <Logo />
-      <AddTask ref={ref} onAdd={handleAddTask} />
-      {!!tasks.length && (
-        <StatusCompleted value={completePercentage} quantity={`${totalTasksCompleted}/${totalTasks}`} />
-      )}
-      <span className="titleTasks">Todas as Tarefas</span>
-      {!tasks.length && (
-        <div className="content">
-          <WithoutTasks />
-          <ButtonAddTask onCLick={handleFocusAddTask} />
-        </div>
-      )}
-      {tasks.map(({ task, id, completed }) => {
-        return (
-          <CardTask
-            onDelete={handleDelete}
-            task={task}
-            key={id}
-            id={id}
-            completed={completed}
-            onToggle={handleToggle}
-          />
-        );
-      })}
-    </main>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <S.Container>
+        <Logo />
+        <AddTask ref={ref} onAdd={handleAddTask} />
+        {!!tasks.length && (
+          <StatusCompleted value={completePercentage} quantity={`${totalTasksCompleted}/${totalTasks}`} />
+        )}
+        <S.TitleTasks>Todas as Tarefas</S.TitleTasks>
+        {!tasks.length && (
+          <S.Content>
+            <WithoutTasks />
+            <ButtonAddTask onCLick={handleFocusAddTask} />
+          </S.Content>
+        )}
+        {tasks.map(({ task, id, completed }) => {
+          return (
+            <CardTask
+              onDelete={handleDelete}
+              task={task}
+              key={id}
+              id={id}
+              completed={completed}
+              onToggle={handleToggle}
+            />
+          );
+        })}
+      </S.Container>
+    </ThemeProvider>
   );
 }
 

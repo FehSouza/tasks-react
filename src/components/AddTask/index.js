@@ -1,5 +1,5 @@
 import { useState, forwardRef } from 'react';
-import styles from './styles.module.css';
+import * as S from './styles';
 
 export const AddTask = forwardRef(({ onAdd }, ref) => {
   const [value, setValue] = useState('');
@@ -18,18 +18,15 @@ export const AddTask = forwardRef(({ onAdd }, ref) => {
   };
 
   return (
-    <div className={styles.containerAddTask}>
-      <input
+    <S.Container>
+      <S.InputTask
         ref={ref}
         value={value}
         onChange={(event) => handleWrite(event)}
         onKeyDown={handlePressEnter(handleClick)}
-        className={styles.inputTask}
         placeholder="Digite uma tarefa"
-      ></input>
-      <button onClick={handleClick} className={styles.buttonAdd}>
-        ADD
-      </button>
-    </div>
+      ></S.InputTask>
+      <S.ButtonAddTask onClick={handleClick}>ADD</S.ButtonAddTask>
+    </S.Container>
   );
 });

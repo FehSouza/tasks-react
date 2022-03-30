@@ -1,9 +1,5 @@
-import styles from './styles.module.css';
+import * as S from './styles';
 
 export const ButtonAddTask = ({ onCLick }) => {
-  return (
-    <button className={styles.buttonAdd} onClick={onCLick}>
-      Cadastrar uma tarefa agora
-    </button>
-  );
+  return <S.Container onClick={onCLick}>Cadastrar uma tarefa agora</S.Container>;
 };
