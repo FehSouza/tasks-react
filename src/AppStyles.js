@@ -4,7 +4,7 @@ export const Container = styled.main`
   width: 100vw;
   height: 100vh;
   overflow-y: hidden;
-  background-color: ${(props) => props.theme.color.backgroundPrimary};
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +17,7 @@ export const TitleTasks = styled.span`
   font-family: 'Signika', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  color: ${(props) => props.theme.color.letterPrimary};
+  color: ${({ theme }) => theme.colors.letterPrimary};
   margin-top: 28px;
 `;
 

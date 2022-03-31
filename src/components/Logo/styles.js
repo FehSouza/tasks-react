@@ -14,6 +14,6 @@ export const Title = styled.h1`
   font-family: 'Signika', sans-serif;
   font-size: 20px;
   font-weight: 700;
-  color: ${(props) => props.theme.color.letterPrimary};
+  color: ${({ theme }) => theme.colors.letterPrimary};
   margin-left: 8px;
 `;

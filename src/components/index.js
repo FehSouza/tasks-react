@@ -4,3 +4,4 @@ export * from './CardTask/index.js';
 export * from './Logo/index.js';
 export * from './StatusCompleted/index.js';
 export * from './WithoutTasks/index.js';
+export * from './ThemeColors/index.js';

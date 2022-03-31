@@ -1,12 +1,21 @@
 import * as S from './AppStyles';
 import { ThemeProvider } from 'styled-components';
-import { Logo, AddTask, WithoutTasks, ButtonAddTask, CardTask, StatusCompleted } from './components/index.js';
+import {
+  Logo,
+  AddTask,
+  WithoutTasks,
+  ButtonAddTask,
+  CardTask,
+  StatusCompleted,
+  ThemeColors,
+} from './components/index.js';
 import { useMemo, useRef, useState } from 'react';
 import { theme } from './styles/theme';
 import { GlobalStyle } from './styles/globalStyle';
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [statusToggleTheme, setStatusToggleTheme] = useState(false);
 
   const handleAddTask = (task) => {
     const text = task.trim();
@@ -37,9 +46,13 @@ function App() {
   const totalTasksCompleted = useMemo(() => tasks.filter((task) => task.completed).length, [tasks]);
   const completePercentage = useMemo(() => (totalTasksCompleted * 100) / totalTasks, [totalTasks, totalTasksCompleted]);
 
+  const handleToggleTheme = () => {
+    setStatusToggleTheme(!statusToggleTheme);
+  };
+
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
+    <ThemeProvider theme={theme[statusToggleTheme ? 'light' : 'dark']}>
+      <GlobalStyle /> {/* dúvida */}
       <S.Container>
         <Logo />
         <AddTask ref={ref} onAdd={handleAddTask} />
@@ -65,6 +78,7 @@ function App() {
             />
           );
         })}
+        <ThemeColors status={statusToggleTheme} toggle={handleToggleTheme} />
       </S.Container>
     </ThemeProvider>
   );

@@ -22,6 +22,6 @@ export const SpanWithoutTasks = styled.span`
   font-family: 'Signika', sans-serif;
   font-size: 16px;
   font-weight: 500;
-  color: ${({theme}) => theme.color.letterPrimary};
+  color: ${({ theme }) => theme.colors.letterPrimary};
   margin-top: 4em;
 `;
