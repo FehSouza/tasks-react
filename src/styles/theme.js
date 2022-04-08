@@ -1,3 +1,4 @@
+const baseTheme = {};
 
 const darkTheme = {
   dark: true,
@@ -18,8 +19,9 @@ const darkTheme = {
     backgroundPrimaryA: '#20222680',
     backgroundSecondaryA: '#2a2c3180',
     deleteA: '#d95656bf',
-  }
-}
+  },
+  ...baseTheme,
+};
 
 const lightTheme = {
   dark: false,
@@ -40,9 +42,11 @@ const lightTheme = {
     backgroundPrimaryA: '#20222680',
     backgroundSecondaryA: '#2a2c3180',
     deleteA: '#d95656bf',
-  }
-}
+  },
+  ...baseTheme,
+};
+
 export const theme = {
   dark: darkTheme,
-  light: lightTheme
+  light: lightTheme,
 };

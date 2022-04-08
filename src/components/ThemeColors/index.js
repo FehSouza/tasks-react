@@ -1,6 +1,8 @@
+import { useThemeMode } from '../../context/useThemeMode/index.js';
 import * as S from './styles.js';
 
-export const ThemeColors = ({ status, toggle }) => {
+export const ThemeColors = () => {
+  const [status, toggle] = useThemeMode()
   const handlePressEnter = () => {
     return (e) => e.key === 'Enter' && toggle();
   };

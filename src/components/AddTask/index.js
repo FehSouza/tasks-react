@@ -1,7 +1,9 @@
 import { useState, forwardRef } from 'react';
+import { useTodo } from '../../context/useTodo';
 import * as S from './styles';
 
-export const AddTask = forwardRef(({ onAdd }, ref) => {
+export const AddTask = forwardRef((_, ref) => {
+  const {addTask} = useTodo()
   const [value, setValue] = useState('');
 
   const handleWrite = (event) => {
@@ -9,7 +11,7 @@ export const AddTask = forwardRef(({ onAdd }, ref) => {
   };
 
   const handleClick = () => {
-    onAdd(value);
+    addTask(value);
     setValue('');
   };
 

@@ -1,8 +1,12 @@
+import { useTodo } from '../../context/useTodo';
 import * as S from './styles';
 
-export const CardTask = ({ task, id, completed, onDelete, onToggle }) => {
-  const handleToggle = () => onToggle(id);
-  const handleDelete = () => onDelete(id);
+export const CardTask = ({ task, id, completed }) => {
+  const { deleteTask, toggleTask } = useTodo();
+  
+  const handleToggle = () => toggleTask(id);
+  const handleDelete = () => deleteTask(id);
+
   const handlePressEnter = (fn) => {
     return (e) => e.key === 'Enter' && fn();
   };
@@ -16,9 +20,7 @@ export const CardTask = ({ task, id, completed, onDelete, onToggle }) => {
       />
       <S.TextTask>{task}</S.TextTask>
       <S.CheckTask onClick={handleToggle} onKeyDown={handlePressEnter(handleToggle)}>
-        {completed && (
-          <S.CheckIcon  alt="A imagem consiste em um desenho de um check na cor verde." />
-        )}
+        {completed && <S.CheckIcon alt="A imagem consiste em um desenho de um check na cor verde." />}
       </S.CheckTask>
     </S.Container>
   );
